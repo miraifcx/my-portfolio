@@ -1,0 +1,24 @@
+{
+  "name": "my-portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node scripts/build.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miraifcx/my-portfolio.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/miraifcx/my-portfolio/issues"
+  },
+  "homepage": "https://github.com/miraifcx/my-portfolio#readme",
+  "devDependencies": {
+    "firebase-tools": "15.34.0",
+    "yaml": "2.9.1"
+  }
+}
