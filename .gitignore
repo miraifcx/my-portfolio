@@ -1,0 +1,12 @@
+*.md
+/.obsidian
+node_modules/
+dist/
+.firebase/
+firebase-debug.log*
+.env
+.env.*
+!.env.example
+.dev.vars*
+gha-creds-*.json
+*service-account*.json

@@ -1,0 +1,21 @@
+{
+  "projects": [
+    {
+      "title": "gcp infrastructure lab",
+      "status": "planned",
+      "description": "a planned lab for practicing networking, infrastructure provisioning, deployment, and monitoring on google cloud.",
+      "technologies": [
+        "google cloud",
+        "terraform",
+        "linux"
+      ],
+      "repository": "",
+      "details": {
+        "goal": "",
+        "implementation": "",
+        "troubleshooting": "",
+        "lessons_learned": ""
+      }
+    }
+  ]
+}

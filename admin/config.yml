@@ -1,0 +1,140 @@
+backend:
+  name: github
+  repo: miraifcx/my-portfolio
+  branch: main
+  # When deploying to static hosts like Firebase Hosting (which do not include
+  # Netlify's built-in GitHub OAuth proxy), uncomment base_url and point it to
+  # your OAuth proxy endpoint (e.g., a Firebase Cloud Function or Cloudflare Worker):
+  # base_url: https://your-oauth-proxy.example.com
+
+# Allows editing content locally via `npx decap-server` without GitHub OAuth
+local_backend: true
+
+# Required by Decap CMS schema validation even for text-only sites
+media_folder: "content/images"
+public_folder: "/content/images"
+
+collections:
+  - name: "site_content"
+    label: "Site Content"
+    files:
+      - name: "profile"
+        label: "Profile & Contact"
+        file: "content/profile.json"
+        format: "json"
+        fields:
+          - label: "Name"
+            name: "name"
+            widget: "string"
+            hint: "Lowercase name displayed at the top of the introduction."
+          - label: "Role / Headline"
+            name: "role"
+            widget: "string"
+            hint: "Lowercase role line displayed beneath your name."
+          - label: "Introduction"
+            name: "intro"
+            widget: "text"
+            hint: "Short personal introduction paragraph."
+          - label: "Contact Links"
+            name: "contact"
+            widget: "object"
+            hint: "Leave any unknown link empty to hide it on the public page."
+            fields:
+              - label: "GitHub URL"
+                name: "github"
+                widget: "string"
+                required: false
+                default: ""
+                pattern:
+                  - "^(https?://.+)?$"
+                  - "Must be a full http:// or https:// URL, or left empty."
+              - label: "LinkedIn URL"
+                name: "linkedin"
+                widget: "string"
+                required: false
+                default: ""
+                pattern:
+                  - "^(https?://.+)?$"
+                  - "Must be a full http:// or https:// URL, or left empty."
+              - label: "Email Address"
+                name: "email"
+                widget: "string"
+                required: false
+                default: ""
+                pattern:
+                  - "^([^\\s@]+@[^\\s@]+\\.[^\\s@]+)?$"
+                  - "Must be a valid email address, or left empty."
+
+      - name: "projects"
+        label: "Projects"
+        file: "content/projects.json"
+        format: "json"
+        fields:
+          - label: "Projects"
+            name: "projects"
+            label_singular: "Project"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.status}})"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                hint: "Lowercase project title (e.g., gcp infrastructure lab)."
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options:
+                  - "planned"
+                  - "in progress"
+                  - "completed"
+                  - "archived"
+                default: "planned"
+              - label: "Description"
+                name: "description"
+                widget: "text"
+                hint: "Short summary shown beneath the project title."
+              - label: "Technologies"
+                name: "technologies"
+                label_singular: "Technology"
+                widget: "list"
+                required: false
+                default: []
+                field:
+                  label: "Technology"
+                  name: "technology"
+                  widget: "string"
+              - label: "Repository URL"
+                name: "repository"
+                widget: "string"
+                required: false
+                default: ""
+                pattern:
+                  - "^(https?://.+)?$"
+                  - "Must be a full http:// or https:// URL, or left empty."
+              - label: "Project Details"
+                name: "details"
+                widget: "object"
+                collapsed: true
+                required: false
+                hint: "Optional expandable explanations. Leave all fields empty to hide the details toggle."
+                fields:
+                  - label: "Goal"
+                    name: "goal"
+                    widget: "text"
+                    required: false
+                    default: ""
+                  - label: "Implementation"
+                    name: "implementation"
+                    widget: "text"
+                    required: false
+                    default: ""
+                  - label: "Troubleshooting"
+                    name: "troubleshooting"
+                    widget: "text"
+                    required: false
+                    default: ""
+                  - label: "Lessons Learned"
+                    name: "lessons_learned"
+                    widget: "text"
+                    required: false
+                    default: ""
