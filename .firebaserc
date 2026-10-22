@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "my-portfolio-eead6"
+  },
+  "targets": {
+    "my-portfolio-eead6": {
+      "hosting": {
+        "portfolio": [
+          "cloud-portfolio-dev"
+        ],
+        "toolbox": [
+          "portfolio-toolbox"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
