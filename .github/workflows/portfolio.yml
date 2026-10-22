@@ -44,7 +44,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_EEAD6 }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_EEAD6 }}
           projectId: ${{ vars.FIREBASE_PROJECT_ID }}
           firebaseToolsVersion: ${{ vars.FIREBASE_TOOLS_VERSION }}
           target: portfolio
@@ -64,14 +64,14 @@ jobs:
       - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          firebaseServiceAccount: ${{ FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_EEAD6 }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_EEAD6 }}
           projectId: ${{ vars.FIREBASE_PROJECT_ID }}
           firebaseToolsVersion: ${{ vars.FIREBASE_TOOLS_VERSION }}
           target: portfolio
           channelId: live
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          firebaseServiceAccount: ${{ FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_EEAD6 }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_EEAD6 }}
           projectId: ${{ vars.FIREBASE_PROJECT_ID }}
           firebaseToolsVersion: ${{ vars.FIREBASE_TOOLS_VERSION }}
           target: toolbox
