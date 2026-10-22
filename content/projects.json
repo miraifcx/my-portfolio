@@ -3,7 +3,7 @@
     {
       "title": "self-hosted vps",
       "status": "completed",
-      "description": "built a self-hosted environment on DigitalOcean to gain hands-on experience running containerized services. the setup combines Docker to containerize a public-facing n8n CE for automation workflows with storage persistence, and implemented a zero-trust architecture by routing traffic through a Cloudflare Tunnel and while managing secure droplet access with Tailscale.",
+      "description": "built a self-hosted environment on DigitalOcean to gain hands-on experience running containerized services.",
       "technologies": [
         "cloudflared",
         "cloudflare access",
@@ -15,7 +15,7 @@
       "repository": "",
       "details": {
         "goal": "",
-        "implementation": "",
+        "implementation": " the setup combines Docker to containerize a public-facing n8n CE for automation workflows with storage persistence, and implemented a zero-trust architecture by routing traffic through a Cloudflare Tunnel and while managing secure droplet access with Tailscale.",
         "troubleshooting": "",
         "lessons_learned": ""
       }
