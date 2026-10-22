@@ -1,0 +1,92 @@
+name: Portfolio delivery
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+  preview:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_EEAD6 }}
+          projectId: ${{ vars.FIREBASE_PROJECT_ID }}
+          firebaseToolsVersion: ${{ vars.FIREBASE_TOOLS_VERSION }}
+          target: portfolio
+          expires: 7d
+
+  live:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_EEAD6 }}
+          projectId: ${{ vars.FIREBASE_PROJECT_ID }}
+          firebaseToolsVersion: ${{ vars.FIREBASE_TOOLS_VERSION }}
+          target: portfolio
+          channelId: live
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_EEAD6 }}
+          projectId: ${{ vars.FIREBASE_PROJECT_ID }}
+          firebaseToolsVersion: ${{ vars.FIREBASE_TOOLS_VERSION }}
+          target: toolbox
+          channelId: live
+      - name: Check deployed release markers
+        env:
+          PORTFOLIO_URL: ${{ vars.PORTFOLIO_URL }}
+          TOOLBOX_URL: ${{ vars.TOOLBOX_URL }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+          for key in ('PORTFOLIO_URL', 'TOOLBOX_URL'):
+              url = os.environ[key].rstrip('/') + '/version.json'
+              with urllib.request.urlopen(url, timeout=30) as response:
+                  version = json.load(response)
+              assert version['commit'] == os.environ['GITHUB_SHA'], url
+              print('Release verified:', url)
+          PY
