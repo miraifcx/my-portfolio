@@ -5,7 +5,12 @@ backend:
   # When deploying to static hosts like Firebase Hosting (which do not include
   # Netlify's built-in GitHub OAuth proxy), uncomment base_url and point it to
   # your OAuth proxy endpoint (e.g., a Firebase Cloud Function or Cloudflare Worker):
-  # base_url: https://your-oauth-proxy.example.com
+  base_url: https://decap-proxy.portfolio-cms-auth.workers.dev
+  auth_endpoint: auth
+
+site_url: https://cloud.miraisekai.space
+display_url: https://cloud.miraisekai.space
+publish_mode: editorial_workflow
 
 # Allows editing content locally via `npx decap-server` without GitHub OAuth
 local_backend: true

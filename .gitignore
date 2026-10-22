@@ -10,3 +10,5 @@ firebase-debug.log*
 .dev.vars*
 gha-creds-*.json
 *service-account*.json
+/.agents
+skills-lock.json
