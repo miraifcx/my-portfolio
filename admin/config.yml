@@ -69,6 +69,14 @@ collections:
                 pattern:
                   - "^([^\\s@]+@[^\\s@]+\\.[^\\s@]+)?$"
                   - "Must be a valid email address, or left empty."
+              - label: "Resume PDF"
+                name: "resume"
+                widget: "file"
+                required: false
+                default: ""
+                media_folder: "/assets"
+                public_folder: "/assets"
+                hint: "Upload a PDF résumé to /assets/ or leave empty to hide the download link."
 
       - name: "projects"
         label: "Projects"
