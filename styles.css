@@ -22,7 +22,7 @@ html {
   background-color: var(--bg);
   color: var(--text-primary);
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
@@ -35,6 +35,7 @@ body {
   min-height: 100vh;
   background-color: var(--bg);
   color: var(--text-primary);
+  font-size: 18px;
 }
 
 ::selection {
@@ -47,7 +48,7 @@ pre,
 kbd,
 samp {
   font-family: var(--font-mono);
-  font-size: 0.875em;
+  font-size: 18px;
   color: var(--text-strong);
 }
 
@@ -68,7 +69,7 @@ samp {
 .intro-name {
   display: inline;
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.65;
   letter-spacing: -0.01em;
@@ -78,7 +79,7 @@ samp {
 .intro-role {
   display: inline;
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.65;
   color: var(--text-primary);
@@ -87,7 +88,7 @@ samp {
 .intro-text {
   margin: 1.25rem 0 0;
   max-width: 60ch;
-  font-size: 0.9375rem;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.65;
   color: var(--text-primary);
@@ -101,7 +102,7 @@ samp {
 
 .section-heading {
   margin: 0 0 0.875rem;
-  font-size: 0.8125rem;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0.01em;
@@ -126,7 +127,7 @@ samp {
 
 .project-title {
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.45;
   color: var(--text-strong);
@@ -134,7 +135,7 @@ samp {
 
 .project-status {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.4;
   color: var(--accent-primary);
@@ -144,7 +145,7 @@ samp {
 .project-description {
   margin: 0.4rem 0 0;
   max-width: 60ch;
-  font-size: 0.9375rem;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-primary);
@@ -152,7 +153,7 @@ samp {
 
 .project-technologies {
   margin: 0.5rem 0 0;
-  font-size: 0.8125rem;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
   color: var(--text-secondary);
@@ -160,7 +161,7 @@ samp {
 
 .project-actions {
   margin-top: 0.65rem;
-  font-size: 0.8125rem;
+  font-size: 18px;
   line-height: 1.5;
 }
 
@@ -180,7 +181,7 @@ samp {
   display: inline-block;
   vertical-align: top;
   color: var(--text-strong);
-  font-size: 0.8125rem;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
   text-decoration: underline;
@@ -206,7 +207,7 @@ samp {
 
 .project-details {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: 18px;
   line-height: 1.5;
 }
 
@@ -239,7 +240,7 @@ samp {
 
 .project-detail-item dt {
   margin: 0 0 0.15rem;
-  font-size: 0.75rem;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.4;
   color: var(--accent-primary);
@@ -248,7 +249,7 @@ samp {
 .project-detail-item dd {
   margin: 0;
   max-width: 58ch;
-  font-size: 0.875rem;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-primary);
@@ -257,7 +258,7 @@ samp {
 .empty-notice {
   margin: 0;
   padding: 1.25rem 0;
-  font-size: 0.875rem;
+  font-size: 18px;
   color: var(--text-secondary);
 }
 

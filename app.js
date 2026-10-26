@@ -14,7 +14,8 @@
   const CONTACT_FIELDS = [
     { key: "github", label: "github", type: "url" },
     { key: "linkedin", label: "linkedin", type: "url" },
-    { key: "email", label: "email", type: "email" }
+    { key: "email", label: "email", type: "email" },
+    { key: "resume", label: "resume", type: "resume" }
   ];
 
   function getCleanText(value) {
@@ -70,6 +71,53 @@
     }
 
     return "mailto:" + address;
+  }
+
+  function getValidResumeHref(rawValue) {
+    const trimmed = getCleanText(rawValue);
+    if (!trimmed) {
+      return null;
+    }
+
+    if (
+      trimmed.includes("\\") ||
+      /[?#\0]/.test(trimmed) ||
+      /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(trimmed)
+    ) {
+      return null;
+    }
+
+    const withoutLeadingSlash = trimmed.startsWith("/") ? trimmed.slice(1) : trimmed;
+    if (!withoutLeadingSlash.startsWith("assets/")) {
+      return null;
+    }
+
+    const segments = withoutLeadingSlash.split("/");
+    if (segments.length < 2) {
+      return null;
+    }
+
+    for (const segment of segments) {
+      if (!segment || segment === "." || segment === "..") {
+        return null;
+      }
+    }
+
+    const filename = segments[segments.length - 1];
+    if (!/\.pdf$/i.test(filename)) {
+      return null;
+    }
+
+    try {
+      return (
+        "/" +
+        segments
+          .map((segment) => encodeURIComponent(decodeURIComponent(segment)))
+          .join("/")
+      );
+    } catch (_err) {
+      return null;
+    }
   }
 
   function formatTechnologies(rawTech) {
@@ -179,8 +227,14 @@
 
     for (const field of CONTACT_FIELDS) {
       const rawValue = contactSource[field.key] ?? profileData[field.key];
-      const validHref =
-        field.type === "email" ? getValidEmailHref(rawValue) : getValidExternalUrl(rawValue);
+      let validHref = null;
+      if (field.type === "email") {
+        validHref = getValidEmailHref(rawValue);
+      } else if (field.type === "resume") {
+        validHref = getValidResumeHref(rawValue);
+      } else {
+        validHref = getValidExternalUrl(rawValue);
+      }
 
       if (!validHref) {
         continue;
@@ -194,6 +248,8 @@
       if (field.type === "url") {
         link.target = "_blank";
         link.rel = "noopener noreferrer";
+      } else if (field.type === "resume") {
+        link.setAttribute("download", "");
       }
 
       contactNav.appendChild(link);
